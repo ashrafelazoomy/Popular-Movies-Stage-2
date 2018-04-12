@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context="com.example.adam.popularmoviesstage2.MovieDetailsActivity"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context="com.example.adam.popularmoviesstage2.MovieDetailsActivity">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="200dp"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <ImageView
+                android:id="@+id/poster_imgv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:contentDescription="@string/movie" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:paddingEnd="2dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="2dp"
+                android:paddingStart="5dp">
+
+
+                <TextView
+                    android:id="@+id/release_date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="2dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="2dp"
+                    android:paddingStart="10dp"  android:textSize="25sp" />
+
+
+
+                <TextView
+                    android:id="@+id/length_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="2dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="2dp"
+                    android:paddingStart="10dp"  android:textSize="25sp"/>
+                <TextView
+                    android:id="@+id/vote_average_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="2dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="2dp"
+                    android:paddingStart="10dp"  android:textSize="25sp"/>
+
+                <ToggleButton
+                    android:id="@+id/favouriteMove_tgbt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="" android:textOff="" android:textOn=""
+                    tools:checked="false" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/original_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp" android:textSize="35sp" android:textStyle="bold"/>
+
+
+            <TextView
+                android:id="@+id/overview_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/trailers_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="@string/trailers" android:layout_marginTop="10dp"  android:textSize="30sp"  />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/trailers_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="true"
+                android:scrollbars="vertical" />
+            <TextView
+                android:id="@+id/reviews_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="@string/reviews" android:layout_marginTop="10dp"  android:textSize="30sp"  />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/reviews_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="true"
+                android:scrollbars="vertical" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

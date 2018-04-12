@@ -1,0 +1,42 @@
+<resources>
+
+    <string name="app_name">Popular Movies</string>
+    <string name="the_movie_db_base_url">https://api.themoviedb.org/3/movie/</string>
+    <string name="content_authority">com.example.adam.popularmoviesstage2</string>
+    <string name="movie_activity_details_title">Movie Details</string>
+
+    <!-- UI text -->
+    <!-- Headlines -->
+    <string name="movie_release_date_header">Release Date</string>
+    <string name="movie_vote_average_header">Vote Average</string>
+    <!-- UI empty text -->
+    <string name="movie_release_date_not_found_message">Release date not found</string>
+    <string name="movie_summary_not_found">Summary not found</string>
+
+
+    <!-- parcelable keys -->
+    <string name="parcel_movie">PARCEL_MOVIE</string>
+
+    <!-- Settings items -->
+    <string name="pref_sort_method_key">SORT_METHOD</string>
+    <string name="pref_sort_vote_avg_desc_key">SORT_VOTE_AVERAGE_DESC</string>
+    <string name="pref_sort_popular_desc_key">SORT_POPULARITY_DESC</string>
+    <string name="pref_sort_favourite_desc_key">SORT_FAVOURITE_DESC</string>
+
+
+    <string name="description_movie_poster">Contains poster of movie</string>
+
+    <!-- Error user information -->
+    <string name="error_no_internet_connection">Kindly connect the Internet</string>
+    <string name="movie">Movie</string>
+    <string name="movie_details_title">Movie Details</string>
+    <string name="play">Play</string>
+    <string name="trailers">Trailers:</string>
+    <string name="reviews">Reviews:</string>
+    <string name="desc" />
+    <string name="most_popular">Popular Movies</string>
+    <string name="top_rated">Top Rated Movies</string>
+    <string name="favourite">Favourite Movies</string>
+    <string name="share_trailer">Share trailer</string>
+    <string name="share">Share</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="column_width">185dp</dimen>
+    <dimen name="the_movie_db_poster_w185_height">278dp</dimen>
+    <dimen name="the_movie_db_poster_w185_width">185dp</dimen>
+</resources>
