@@ -88,9 +88,23 @@ holder.play_igbtn.setTag(mTarget);
         holder.play_igbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=".concat(trailer.getKey())));
+              /*  Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=".concat(trailer.getKey())));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                context.startActivity(intent);
+*/
+                Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + trailer.getKey()));
+                appIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=".concat(trailer.getKey())));
+                webIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+// Verify that the intent will resolve to an activity
+                if (appIntent.resolveActivity(context.getPackageManager()) != null) {
+                    // Open Youtube client
+                    context.startActivity(appIntent);
+                }
+                else {
+                    // Default to Web browser
+                    context. startActivity(webIntent);
+                }
             }
         } );
     }

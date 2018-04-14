@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         movies_rv.setHasFixedSize(true);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, Globals.calculateNoOfColumnsInRecyclerView(this));
+        GridLayoutManager layoutManager = new GridLayoutManager(this, Globals.calculateNoOfColumnsInRecyclerView(this, getResources().getInteger(R.integer.the_movie_db_poster_w185_width)));
 
         movies_rv.setLayoutManager(layoutManager);
         rvScrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {

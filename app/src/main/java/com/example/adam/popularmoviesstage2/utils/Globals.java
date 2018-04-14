@@ -14,10 +14,17 @@ public class Globals {
     public static final String TMDB_SORT_POP_DESC="popularity.desc";
     public static final String TMDB_SORT_VOTE_AVG_DESC= "vote_average.desc";
 
-    public static int calculateNoOfColumnsInRecyclerView(Context context) {
+    public static int calculateNoOfColumnsInRecyclerView(Context context,int itemWidth) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int noOfColumns = (int) (dpWidth / 185);
+        int noOfColumns = (int) (dpWidth / itemWidth);
         return noOfColumns;
+    }
+
+    public static float getScreenWidth(Context context) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+
+        return dpWidth;
     }
 }

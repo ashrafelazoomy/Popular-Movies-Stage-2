@@ -5,14 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -62,10 +65,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
     RecyclerView trailers_rv;
     @BindView(R.id.reviews_rv)
     RecyclerView reviews_rv;
+    @BindView(R.id.movie_details_scv)
+    NestedScrollView movie_details_scv;
     public static final String BUNDLE_MOVIE_KEY = "movie";
     public static final String BUNDLE_REVIEWS_KEY = "reviews";
     public static final String BUNDLE_VIDEOS_KEY = "videos";
     public static final String BUNDLE_IS_FAVOURITE_KEY = "IsFavourite";
+    public  static  int NoOfColumnsInRecyclerView=0;
     private boolean mIsFavourite=false;
 
     @Override
@@ -89,8 +95,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                     switchFavouriteStatus(isFavouriteChecked);
                 }
             });
-            LinearLayoutManager trailersLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-            trailers_rv.setLayoutManager(trailersLayoutManager);
+
             getTrailers(movieID);
             LinearLayoutManager reviewsLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             reviews_rv.setLayoutManager(reviewsLayoutManager);
@@ -122,7 +127,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
             public void onResponse(VideoResults result) {
                 mVideos=result;
                 if (result != null) {
-                    trailers_rv.setAdapter(new TrailerAdapter(getApplicationContext(), result));
+                    mVideos=result;
+                    setupTrailersRecyclerView();
                 }
             }
 
@@ -271,7 +277,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         }
         if ( mVideos !=null) {
             outState.putParcelable(BUNDLE_VIDEOS_KEY,mVideos );
-        }
+        } 
     }
 
     @Override
@@ -287,19 +293,24 @@ public class MovieDetailsActivity extends AppCompatActivity {
         Reviews tempReviews = savedInstanceState.getParcelable(BUNDLE_REVIEWS_KEY);
         if (tempReviews != null) {
             mReviews= tempReviews;
-            LinearLayoutManager trailersLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-            trailers_rv.setLayoutManager(trailersLayoutManager);
+            LinearLayoutManager reviewsLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            reviews_rv.setLayoutManager(reviewsLayoutManager);
             reviews_rv.setAdapter(new ReviewAdapter(this, mReviews));
         }
         VideoResults tempVideos = savedInstanceState.getParcelable(BUNDLE_VIDEOS_KEY);
         if (tempVideos != null) {
             mVideos= tempVideos;
-            LinearLayoutManager reviewsLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-            reviews_rv.setLayoutManager(reviewsLayoutManager);
-            trailers_rv.setAdapter(new TrailerAdapter(this, mVideos));
+            setupTrailersRecyclerView();
         }
-    }
 
+
+    }
+void  setupTrailersRecyclerView(){
+    NoOfColumnsInRecyclerView=Globals.calculateNoOfColumnsInRecyclerView(this, getResources().getInteger(R.integer.the_movie_db_poster_w185_width));
+    GridLayoutManager trailersLayoutManager = new GridLayoutManager(this,NoOfColumnsInRecyclerView);
+    trailers_rv.setLayoutManager(trailersLayoutManager);
+    trailers_rv.setAdapter(new TrailerAdapter(this, mVideos));
+}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.movie_details_menu, menu);
